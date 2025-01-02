@@ -1,10 +1,10 @@
 spring.application.name=mddApi
 spring.datasource.url=jdbc:mysql://localhost:3306/mdd
-spring.datasource.username=root
-spring.datasource.password=
+spring.datasource.username=yourdatabaseusername
+spring.datasource.password=yourdatabasepassword
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
-jwt.secret=DF7344A694019D76824FC12E0156FCCFE17CB614FDB46D75298E04738EE4E0C4
+jwt.secret=créerUnTokenEnLigneDeCommande(voirREADME)
 
 server.base-url=http://localhost:8080
