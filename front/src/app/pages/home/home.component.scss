@@ -5,3 +5,12 @@
   align-items: center;
   flex-direction: column;
 }
+button {
+  width: 140px;
+}
+.buttonDiv {
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+}
+
