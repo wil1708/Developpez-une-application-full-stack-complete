@@ -13,10 +13,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { LoginComponent } from './pages/login/login.component';
+import { ThemeComponent } from './pages/theme/theme.component';
 
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, SignupComponent, LoginComponent],
+  declarations: [AppComponent, HomeComponent, SignupComponent, LoginComponent, ThemeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
