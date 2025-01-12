@@ -1,0 +1,36 @@
+header {
+    border-bottom: 1px solid black;
+}
+img {
+    width: 20%;
+}
+.mat-icon-button {
+    margin: 40px 0 0 50px;
+}
+.large-icon {
+    transform: scale(3);
+}
+div {
+    display: flex; 
+    justify-content: center;
+}
+mat-card { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: none !important; 
+    border: none !important; 
+    box-shadow: none !important; 
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+mat-card-content {
+    display: flex;
+    flex-direction: column;
+}
+
+
+

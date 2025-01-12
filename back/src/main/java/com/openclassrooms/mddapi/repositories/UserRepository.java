@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     public User findByEmail(String name);
+    public User findById(long id);
     @NonNull
     public ArrayList<User> findAll();
 }
