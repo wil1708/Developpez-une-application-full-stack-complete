@@ -12,10 +12,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
+import { LoginComponent } from './pages/login/login.component';
 
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, SignupComponent],
+  declarations: [AppComponent, HomeComponent, SignupComponent, LoginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
