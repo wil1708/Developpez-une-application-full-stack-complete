@@ -14,10 +14,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { LoginComponent } from './pages/login/login.component';
 import { ThemeComponent } from './pages/theme/theme.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, SignupComponent, LoginComponent, ThemeComponent],
+  declarations: [AppComponent, HomeComponent, SignupComponent, LoginComponent, ThemeComponent, ProfileComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
