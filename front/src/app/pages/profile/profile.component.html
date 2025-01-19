@@ -3,7 +3,7 @@
   <div class="navbar">
     <a class="textlink" href="">Articles</a>
     <a class="textlink" routerLink="/theme">Thèmes</a>
-    <a class="iconlink" routerLink="/profile">
+    <a class="iconlink" [ngClass]="{'active': isProfilePage}" routerLink="/profile">
       <mat-icon>account_circle</mat-icon>
     </a>
   </div>
@@ -27,7 +27,7 @@
       </mat-card-content>
       <button mat-raised-button color="primary" type="submit">Sauvegarder</button>
     </form>
-    <span class="link">Se déconnecter</span>
+    <span (click)="logout()" class="link">Se déconnecter</span>
   </mat-card>
   <div class="theme-container">
     <hr class="divider">
