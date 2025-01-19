@@ -59,6 +59,10 @@ img {
     align-items: flex-start;
 }
 
+.mat-card.subscribed {
+    background-color: #e5d5e4 !important;  // Couleur de fond pour les thèmes abonnés
+}
+
 .mat-card-header .mat-card-header-text {
     margin: 0 !important;
 }

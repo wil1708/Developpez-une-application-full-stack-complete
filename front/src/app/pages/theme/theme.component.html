@@ -10,7 +10,7 @@
 </header>
 <body>
     <div class="theme-container">
-        <mat-card *ngFor="let theme of themes">
+        <mat-card *ngFor="let theme of themes" [ngClass]="{'subscribed': theme.subscribed}">
             <mat-card-header>
                 <mat-card-title>{{ theme.title }}</mat-card-title>
             </mat-card-header>
@@ -20,7 +20,12 @@
                 </p>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-button>S'abonner</button>
+                <ng-container *ngIf="!theme.subscribed; else alreadySubscribed">
+                    <button mat-button (click)="subscribeToTheme(theme.id)">S'abonner</button>
+                </ng-container>
+                <ng-template #alreadySubscribed>
+                    <span><strong>Abonné</strong></span>
+                </ng-template>
             </mat-card-actions>
         </mat-card>
     </div>

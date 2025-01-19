@@ -10,7 +10,7 @@ import lombok.EqualsAndHashCode;
 import java.io.Serializable;
 import java.util.Set;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude = "users")
 @Data
 @Entity
 public class Theme extends BaseEntity implements Serializable {

@@ -1,61 +1,51 @@
 <header>
-    <img src="/assets/logo_p6.png" alt="logo" />
-    <div class="navbar">
-        <a class="textlink" href="">Articles</a>
-        <a class="textlink" routerLink="/theme">Thèmes</a>
-        <a class="iconlink" routerLink="/profile">
-            <mat-icon>account_circle</mat-icon>
-        </a>
-    </div>
+  <img src="/assets/logo_p6.png" alt="logo" />
+  <div class="navbar">
+    <a class="textlink" href="">Articles</a>
+    <a class="textlink" routerLink="/theme">Thèmes</a>
+    <a class="iconlink" routerLink="/profile">
+      <mat-icon>account_circle</mat-icon>
+    </a>
+  </div>
 </header>
 <body>
-    <mat-card class="profilecard">
-        <mat-card-header>
-            <mat-card-title>Profil utilisateur</mat-card-title>
-        </mat-card-header>
-        <form [formGroup]="profileForm">
-            <mat-card-content>
-                <mat-form-field appearance="fill">
-                    <mat-label>Nom d'utilisateur</mat-label>
-                    <input matInput formControlName="name">
-                </mat-form-field>
+  <mat-card class="profilecard">
+    <mat-card-header>
+      <mat-card-title>Profil utilisateur</mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="profileForm">
+      <mat-card-content>
+        <mat-form-field appearance="fill">
+          <mat-label>Nom d'utilisateur</mat-label>
+          <input matInput formControlName="name">
+        </mat-form-field>
 
-                <mat-form-field appearance="fill">
-                    <mat-label>Adresse email</mat-label>
-                    <input matInput formControlName="email" type="email">
-                </mat-form-field>
-            </mat-card-content>
-            <button mat-raised-button color="primary" type="submit">Sauvegarder</button>
-        </form>
-      <span class="link">Se déconnecter</span>
+        <mat-form-field appearance="fill">
+          <mat-label>Adresse email</mat-label>
+          <input matInput formControlName="email" type="email">
+        </mat-form-field>
+      </mat-card-content>
+      <button mat-raised-button color="primary" type="submit">Sauvegarder</button>
+    </form>
+    <span class="link">Se déconnecter</span>
+  </mat-card>
+  <div class="theme-container">
+    <hr class="divider">
+    <mat-card *ngFor="let theme of userThemesForProfile">
+      <mat-card-header>
+        <mat-card-title>{{ theme.title }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          {{ theme.description }}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="unsubscribeFromTheme(theme.id)">Se désabonner</button>
+      </mat-card-actions>
     </mat-card>
-    <div class="theme-container">
-        <hr class="divider">
-        <mat-card>
-            <mat-card-header>
-                <mat-card-title>Title</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                </p>
-            </mat-card-content>
-            <mat-card-actions>
-                <button mat-button>Se désabonner</button>
-            </mat-card-actions>
-        </mat-card>
-        <mat-card>
-            <mat-card-header>
-                <mat-card-title>Title</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                </p>
-            </mat-card-content>
-            <mat-card-actions>
-                <button mat-button>Se désabonner</button>
-            </mat-card-actions>
-        </mat-card>
-    </div>
+    <ng-container *ngIf="userThemesForProfile.length % 2 !== 0">
+      <mat-card class="invisible-card"></mat-card>
+    </ng-container>
+  </div>
 </body>
