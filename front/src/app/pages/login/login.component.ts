@@ -35,9 +35,9 @@ export class LoginComponent {
         localStorage.setItem('token', response.token);
         this.authService.me().subscribe((user: User) => {
           this.sessionService.logIn(user);
-          this.router.navigate([''])
+          this.router.navigate(['theme'])
         });
-        this.router.navigate([''])
+        this.router.navigate(['theme'])
       },
       error => this.onError = true
     );
