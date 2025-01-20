@@ -29,6 +29,11 @@ export class SessionService {
     this.next();
   }
 
+  public setUser(user: User): void {
+    this.user = user;
+    this.next();
+  }
+
   private next(): void {
     this.isLoggedSubject.next(this.isLogged);
   }

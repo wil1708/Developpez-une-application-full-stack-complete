@@ -7,8 +7,7 @@ import com.openclassrooms.mddapi.services.ThemeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,6 +28,25 @@ public class ThemeController {
         List<ThemeDto> themeDtos = themes.stream()
                 .map(DtoMapper.INSTANCE::themeToThemeDto)
                 .collect(Collectors.toList());
+        return new ResponseEntity<>(themeDtos, HttpStatus.OK);
+    }
+
+    @PostMapping("/api/theme/{themeId}/user/{userId}")
+    public ResponseEntity<Void> subscribeToTheme(@PathVariable Long themeId, @PathVariable Long userId) {
+        themeService.addUserToTheme(themeId, userId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/api/theme/{themeId}/user/{userId}")
+    public ResponseEntity<Void> unsubscribeFromTheme(@PathVariable Long themeId, @PathVariable Long userId) {
+        themeService.removeUserFromTheme(themeId, userId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/api/user/{userId}/themes")
+    public ResponseEntity<List<ThemeDto>> getUserThemes(@PathVariable Long userId) {
+        List<Theme> userThemes = themeService.findThemesByUserId(userId);
+        List<ThemeDto> themeDtos = userThemes.stream() .map(DtoMapper.INSTANCE::themeToThemeDto) .collect(Collectors.toList());
         return new ResponseEntity<>(themeDtos, HttpStatus.OK);
     }
 }

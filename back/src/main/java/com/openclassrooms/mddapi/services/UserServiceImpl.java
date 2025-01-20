@@ -1,6 +1,5 @@
 package com.openclassrooms.mddapi.services;
 
-
 import com.openclassrooms.mddapi.dtos.UserDto;
 import com.openclassrooms.mddapi.entities.User;
 import com.openclassrooms.mddapi.mapper.DtoMapper;
@@ -13,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Optional;
-
 
 @Transactional
 @Service
@@ -48,6 +46,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
+    @Override
     public UserDto findUserByToken(String token) {
         if (token.startsWith("Bearer ")) {
             token = token.substring(7);
@@ -65,4 +64,17 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public Optional<User> updateUser(Long id, UserDto userDto) {
+        return userRepository.findById(id).map(user -> {
+            if (userDto.getName() != null) {
+                user.setName(userDto.getName());
+            }
+            if (userDto.getEmail() != null) {
+                user.setEmail(userDto.getEmail());
+            }
+            userRepository.save(user);
+            return user;
+        });
+    }
 }
