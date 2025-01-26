@@ -1,32 +1,21 @@
-<header>
-    <img src="/assets/logo_p6.png" alt="logo" />
-    <div class="navbar">
-        <a class="textlink" href="">Articles</a>
-        <a class="textlink" [ngClass]="{'active': isThemePage}" routerLink="/theme">Thèmes</a>
-        <a class="iconlink" routerLink="/profile">
-            <mat-icon>account_circle</mat-icon>
-        </a>
-    </div>
-</header>
-<body>
-    <div class="theme-container">
-        <mat-card *ngFor="let theme of themes" [ngClass]="{'subscribed': theme.subscribed}">
-            <mat-card-header>
-                <mat-card-title>{{ theme.title }}</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <p>
-                    {{ theme.description }}
-                </p>
-            </mat-card-content>
-            <mat-card-actions>
-                <ng-container *ngIf="!theme.subscribed; else alreadySubscribed">
-                    <button mat-button (click)="subscribeToTheme(theme.id)">S'abonner</button>
-                </ng-container>
-                <ng-template #alreadySubscribed>
-                    <span><strong>Abonné</strong></span>
-                </ng-template>
-            </mat-card-actions>
-        </mat-card>
-    </div>
-</body>
+<app-navbar></app-navbar>
+<div class="theme-container">
+    <mat-card *ngFor="let theme of themes" [ngClass]="{'subscribed': theme.subscribed}">
+        <mat-card-header>
+            <mat-card-title>{{ theme.title }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p>
+                {{ theme.description }}
+            </p>
+        </mat-card-content>
+        <mat-card-actions>
+            <ng-container *ngIf="!theme.subscribed; else alreadySubscribed">
+                <button mat-button (click)="subscribeToTheme(theme.id)">S'abonner</button>
+            </ng-container>
+            <ng-template #alreadySubscribed>
+                <span><strong>Abonné</strong></span>
+            </ng-template>
+        </mat-card-actions>
+    </mat-card>
+</div>

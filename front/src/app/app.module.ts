@@ -16,9 +16,10 @@ import { LoginComponent } from './pages/login/login.component';
 import { ThemeComponent } from './pages/theme/theme.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, SignupComponent, LoginComponent, ThemeComponent, ProfileComponent],
+  declarations: [AppComponent, HomeComponent, SignupComponent, LoginComponent, ThemeComponent, ProfileComponent, NavbarComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
