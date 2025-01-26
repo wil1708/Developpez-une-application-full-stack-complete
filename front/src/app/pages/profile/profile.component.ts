@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit, OnDestroy {
   
-  isProfilePage: boolean = false;
+
 
   public profileForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -35,7 +35,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.isProfilePage = this.router.url.includes('profile');
+    
     const user = this.sessionService.user;
     if (user && user.id) {
       this.themeService.getUserThemes(user.id);

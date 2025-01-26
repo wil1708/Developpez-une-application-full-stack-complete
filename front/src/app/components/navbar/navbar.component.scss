@@ -1,0 +1,45 @@
+header {
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+  
+      .textlink, .iconlink {
+        margin-right: 50px;
+        text-decoration: none;
+        font-size: 30px;
+  
+        &.active {
+          color: #7763c4 !important;
+        }
+
+        &.active .mat-icon {
+            color:#7763c4 !important;
+        }
+        
+        &:visited {
+          color: black;
+        }
+      }
+  
+      .iconlink {
+        margin-left: 20px;
+  
+        .mat-icon {
+          transform: scale(3);
+          margin-right: 50px;
+          color: #b2b2b2;
+        }
+      }
+    }
+  
+    img {
+      width: 20%;
+    }
+  }
+  
