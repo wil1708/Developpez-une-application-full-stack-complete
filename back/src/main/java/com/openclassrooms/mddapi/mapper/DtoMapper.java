@@ -1,10 +1,13 @@
 package com.openclassrooms.mddapi.mapper;
 
+import com.openclassrooms.mddapi.dtos.ArticleDto;
 import com.openclassrooms.mddapi.dtos.ThemeDto;
 import com.openclassrooms.mddapi.dtos.UserDto;
+import com.openclassrooms.mddapi.entities.Article;
 import com.openclassrooms.mddapi.entities.Theme;
 import com.openclassrooms.mddapi.entities.User;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 
@@ -14,4 +17,6 @@ public interface DtoMapper {
 
     UserDto userToUserDto(User user);
     ThemeDto themeToThemeDto(Theme theme);
+    @Mapping(source = "user.name", target = "name")
+    ArticleDto articleToArticleDto(Article article);
 }

@@ -14,14 +14,12 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class ThemeComponent implements OnInit, OnDestroy {
 
-  isThemePage: boolean = false;
   themes: Theme[] = [];
   private destroy$ = new Subject<void>();
 
   constructor(private router: Router, private themeService: ThemeService, private sessionService: SessionService) { }
 
   ngOnInit(): void {
-    this.isThemePage = this.router.url.includes('theme');
     this.loadThemes();
 
     this.themeService.themes$.pipe(
