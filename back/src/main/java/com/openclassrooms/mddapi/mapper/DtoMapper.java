@@ -17,6 +17,8 @@ public interface DtoMapper {
 
     UserDto userToUserDto(User user);
     ThemeDto themeToThemeDto(Theme theme);
+
     @Mapping(source = "user.name", target = "name")
+    @Mapping(source = "theme.id", target = "theme_id")
     ArticleDto articleToArticleDto(Article article);
 }

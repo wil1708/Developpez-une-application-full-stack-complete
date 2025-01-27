@@ -54,3 +54,12 @@
 .mat-card-header .mat-card-header-text {
     margin: 0 !important;
 }
+
+.invisible-card {
+    visibility: hidden;
+    flex: 1 1 calc(33.333% - 40px);
+    margin: 20px 10px;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}

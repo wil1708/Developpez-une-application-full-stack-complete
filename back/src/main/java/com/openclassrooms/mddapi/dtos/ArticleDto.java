@@ -1,6 +1,5 @@
 package com.openclassrooms.mddapi.dtos;
 
-import com.openclassrooms.mddapi.entities.Theme;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -19,5 +18,5 @@ public class ArticleDto extends BaseEntityDto implements Serializable {
 
     private String name;
 
-    private Theme theme_id;
+    private Long theme_id;
 }

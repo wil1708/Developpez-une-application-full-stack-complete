@@ -1,0 +1,38 @@
+<app-navbar></app-navbar>
+<button mat-icon-button (click)="back()">
+    <mat-icon class="large-icon">arrow_back</mat-icon>
+</button>
+<div class="article-form">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Créer un nouvel article</mat-card-title>
+        </mat-card-header>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <mat-card-content>
+                <mat-form-field appearance="fill">
+                    <mat-label>Sélectionner un thème</mat-label>
+                    <mat-select formControlName="theme">
+                        <mat-option *ngFor="let theme of themes" [value]="theme.id">
+                            {{ theme.title }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Titre de l'article</mat-label>
+                    <input matInput formControlName="title">
+                </mat-form-field>
+                
+                <mat-form-field appearance="fill">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput formControlName="description" rows="10" cols="50"></textarea>
+                </mat-form-field>
+
+                <div *ngIf="isArticleCreated" class="success-message">
+                    Article créé !
+                </div>
+            </mat-card-content>
+            <button mat-raised-button color="primary" type="submit">Créer</button>
+        </form>
+    </mat-card>
+</div>
