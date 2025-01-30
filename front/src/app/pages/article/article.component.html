@@ -9,12 +9,12 @@
     </button>
   </div>
   <div class="article-container">
-    <mat-card *ngFor="let article of articles">
+    <mat-card *ngFor="let article of articles" (click)="viewArticle(article)">
       <mat-card-header>
         <mat-card-title>{{ article.title }}</mat-card-title>
         <div class="date-author">
           <span class="date">{{ article.createdAt | date: 'dd MMM yyyy' }}</span>
-          <span class="author">{{ article.name }}</span>
+          <span class="author">{{ article.user }}</span>
         </div>
       </mat-card-header>
       <mat-card-content>

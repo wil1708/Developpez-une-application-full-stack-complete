@@ -16,7 +16,7 @@ public class ArticleDto extends BaseEntityDto implements Serializable {
 
     private String description;
 
-    private String name;
+    private String user;
 
-    private Long theme_id;
+    private String theme;
 }

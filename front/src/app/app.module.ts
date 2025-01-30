@@ -21,9 +21,10 @@ import { ArticleComponent } from './pages/article/article.component';
 import { CreateArticleComponent } from './pages/create-article/create-article.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
+import { CommentComponent } from './pages/comment/comment.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, SignupComponent, LoginComponent, ThemeComponent, ProfileComponent, NavbarComponent, ArticleComponent, CreateArticleComponent],
+  declarations: [AppComponent, HomeComponent, SignupComponent, LoginComponent, ThemeComponent, ProfileComponent, NavbarComponent, ArticleComponent, CreateArticleComponent, CommentComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
