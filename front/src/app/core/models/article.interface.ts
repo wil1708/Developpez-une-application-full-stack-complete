@@ -3,5 +3,6 @@ export interface Article {
     title: string;
     createdAt: Date;
     description: string;
-    name: string;
+    user: string;
+    theme: string;
 }

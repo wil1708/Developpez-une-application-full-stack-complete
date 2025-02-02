@@ -6,12 +6,10 @@ import com.openclassrooms.mddapi.repositories.ThemeRepository;
 import com.openclassrooms.mddapi.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Transactional
 @Service
 public class ThemeServiceImpl implements ThemeService {
 
@@ -48,5 +46,10 @@ public class ThemeServiceImpl implements ThemeService {
         theme.getUsers().remove(user);
         user.getThemes().remove(theme);
         themeRepository.save(theme);
+    }
+
+    @Override
+    public Theme findThemeById(Long id) {
+        return themeRepository.findById(id).orElse(null);
     }
 }

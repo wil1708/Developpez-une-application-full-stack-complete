@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> findUserById(long id) {
+    public Optional<User> findUserOptionalById(long id) {
         return Optional.ofNullable(userRepository.findById(id));
     }
 
@@ -76,5 +76,10 @@ public class UserServiceImpl implements UserService {
             userRepository.save(user);
             return user;
         });
+    }
+
+    @Override
+    public User findUserById(Long id) {
+        return userRepository.findById(id).orElse(null);
     }
 }

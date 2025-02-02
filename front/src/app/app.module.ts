@@ -18,9 +18,13 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ArticleComponent } from './pages/article/article.component';
+import { CreateArticleComponent } from './pages/create-article/create-article.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
+import { CommentComponent } from './pages/comment/comment.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, SignupComponent, LoginComponent, ThemeComponent, ProfileComponent, NavbarComponent, ArticleComponent],
+  declarations: [AppComponent, HomeComponent, SignupComponent, LoginComponent, ThemeComponent, ProfileComponent, NavbarComponent, ArticleComponent, CreateArticleComponent, CommentComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -32,6 +36,8 @@ import { ArticleComponent } from './pages/article/article.component';
     MatInputModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatSelectModule,
+    MatOptionModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }

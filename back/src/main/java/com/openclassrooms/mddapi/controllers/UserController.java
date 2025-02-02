@@ -21,7 +21,7 @@ public class UserController {
      */
     @GetMapping("/api/user/{id}")
     public ResponseEntity<UserDto> getUser(@PathVariable Long id) {
-        return userService.findUserById(id)
+        return userService.findUserOptionalById(id)
                 .map(user -> {
                     UserDto userDto = DtoMapper.INSTANCE.userToUserDto(user);
                     return new ResponseEntity<>(userDto, HttpStatus.OK);
