@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Article } from 'src/app/core/models/article.interface'; // Adjust the import path as needed
 import { CommentService } from 'src/app/core/services/comment.service'; // Adjust the import path as needed
 import { Comment } from 'src/app/core/models/comment.interface'; // Adjust the import path as needed
@@ -14,11 +15,20 @@ import { takeUntil } from 'rxjs/operators';
 export class CommentComponent implements OnInit, OnDestroy {
   article: Article | undefined;
   comments: Comment[] = [];
+  commentForm: FormGroup; // Form group to handle comment input
   private destroy$ = new Subject<void>();
 
-  constructor(private router: Router, private commentService: CommentService) {
+  constructor(
+    private router: Router,
+    private commentService: CommentService,
+    private fb: FormBuilder
+  ) {
     const navigation = this.router.getCurrentNavigation();
     this.article = navigation?.extras?.state?.['article'];
+
+    this.commentForm = this.fb.group({
+      comment: ['']
+    });
   }
 
   ngOnInit(): void {
@@ -38,5 +48,16 @@ export class CommentComponent implements OnInit, OnDestroy {
 
   public back() {
     window.history.back();
+  }
+
+  public addComment() {
+    if (this.article && this.commentForm.value.comment) {
+      const userId = 1; // Replace with the actual user ID
+      this.commentService.addComment(this.article.id, userId, this.commentForm.value.comment)
+        .subscribe((newComment: Comment) => {
+          this.comments.push(newComment);
+          this.commentForm.reset(); // Clear the form
+        });
+    }
   }
 }

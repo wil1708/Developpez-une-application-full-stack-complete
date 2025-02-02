@@ -14,4 +14,9 @@ export class CommentService {
   getCommentsByArticleId(articleId: number): Observable<Comment[]> {
     return this.httpClient.get<Comment[]>(`${this.pathService}/comments/article/${articleId}`);
   }
+
+  addComment(articleId: number, userId: number, content: string): Observable<Comment> {
+    const commentDto = { content };
+    return this.httpClient.post<Comment>(`${this.pathService}/comments/article/${articleId}/user/${userId}`, commentDto);
+  }
 }

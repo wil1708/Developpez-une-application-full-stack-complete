@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface CommentService {
     List<CommentDto> getCommentsByArticleId(Long articleId);
+    CommentDto addComment(Long articleId, Long userId, String content);
 }
