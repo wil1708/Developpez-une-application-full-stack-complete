@@ -9,4 +9,5 @@ public interface ThemeService {
     void addUserToTheme(Long themeId, Long userId);
     List<Theme> findThemesByUserId(Long userId);
     void removeUserFromTheme(Long themeId, Long userId);  // Nouvelle méthode
+    Theme findThemeById(Long id);
 }

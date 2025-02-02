@@ -1,0 +1,40 @@
+<app-navbar></app-navbar>
+<div class="arrow-article">
+    <button mat-icon-button (click)="back()">
+        <mat-icon class="large-icon">arrow_back</mat-icon>
+    </button>
+    <mat-card *ngIf="article">
+        <mat-card-header>
+            <mat-card-title>{{ article.title }}</mat-card-title>
+            <div class="date-author">
+                <span class="date">{{ article.createdAt | date: 'dd MMM yyyy' }}</span>
+                <span class="author">{{ article.user }}</span>
+                <span class="theme">{{ article.theme }}</span>
+            </div>
+        </mat-card-header>
+        <mat-card-content>
+            <p>{{ article.description }}</p>
+        </mat-card-content>
+        <hr class="divider">
+        <h2>Commentaires</h2>
+        <div class="global-comment-div">
+            <div *ngFor="let comment of comments" class="comments">
+                <div class="comment">
+                    <span>{{ comment.userDto.name }}</span>
+                    <p class="comment-text">{{ comment.content }}</p>
+                </div>
+            </div>
+            <div class="comment-to-add">
+                <form [formGroup]="commentForm" (ngSubmit)="addComment()">
+                    <mat-form-field appearance="fill" class="comment-form-field">
+                        <mat-label>Ecrivez ici votre commentaire</mat-label>
+                        <textarea matInput formControlName="comment" rows="10" class="comment-text-area"></textarea>
+                    </mat-form-field>
+                    <button mat-icon-button type="submit" class="send-icon">
+                        <mat-icon>send</mat-icon>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </mat-card>
+</div>

@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <div class="page-container">
   <div class="create-sort-div">
-    <button mat-raised-button color="primary">Créer un article</button>
+    <button mat-raised-button color="primary" routerLink="/create-article">Créer un article</button>
     <button mat-flat-button color="white" (click)="toggleSortOrder()">
       Trier par
       <mat-icon *ngIf="sortAscending">arrow_upward</mat-icon>
@@ -9,17 +9,20 @@
     </button>
   </div>
   <div class="article-container">
-    <mat-card *ngFor="let article of articles">
+    <mat-card *ngFor="let article of articles" (click)="viewArticle(article)">
       <mat-card-header>
         <mat-card-title>{{ article.title }}</mat-card-title>
         <div class="date-author">
           <span class="date">{{ article.createdAt | date: 'dd MMM yyyy' }}</span>
-          <span class="author">{{ article.name }}</span>
+          <span class="author">{{ article.user }}</span>
         </div>
       </mat-card-header>
       <mat-card-content>
         <p>{{ article.description }}</p>
       </mat-card-content>
     </mat-card>
+    <ng-container *ngIf="articles.length % 2 !== 0">
+      <mat-card class="invisible-card"></mat-card>
+    </ng-container>
   </div>
 </div>

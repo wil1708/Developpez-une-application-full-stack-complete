@@ -7,4 +7,5 @@ import java.util.List;
 public interface ArticleService {
     List<Article> findAllArticles();
     List<Article> findArticlesByThemeId(Long themeId);
+    Article saveArticle(Article article);
 }

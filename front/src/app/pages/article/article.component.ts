@@ -54,4 +54,8 @@ export class ArticleComponent implements OnInit, OnDestroy {
       new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
     );
   }
+
+  viewArticle(article: Article): void {
+    this.router.navigate(['/comment'], { state: { article } });
+  }
 }

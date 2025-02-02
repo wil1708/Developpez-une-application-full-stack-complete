@@ -22,4 +22,9 @@ public class ArticleServiceImpl implements ArticleService {
     public List<Article> findArticlesByThemeId(Long themeId) {
         return articleRepository.findByThemeId(themeId);
     }
+
+    @Override
+    public Article saveArticle(Article article) {
+        return articleRepository.save(article);
+    }
 }
