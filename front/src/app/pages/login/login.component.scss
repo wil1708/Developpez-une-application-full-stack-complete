@@ -22,6 +22,9 @@ mat-card {
     border: none !important; 
     box-shadow: none !important; 
 }
+.mat-card-title {
+    margin-bottom: 40px !important;
+}
 form {
     display: flex;
     flex-direction: column;
@@ -40,4 +43,26 @@ mat-card-content {
     text-align: center;
 }
 
+@media screen and (max-width: 430px) {
+
+    header {
+        border-bottom: none;
+        display: flex;
+        justify-content: center;
+        height: 200px;
+        margin-top: 100px;
+        position: relative;
+    }
+    img {
+        width: 80%;
+    }
+    .large-icon {
+        transform: scale(3);
+    }
+    .mat-icon-button {
+        position: absolute;
+        top: 0;
+    }
+
+}
 
