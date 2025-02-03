@@ -15,6 +15,7 @@ import { SessionService } from 'src/app/core/services/session.service';
 export class SignupComponent {
 
   public onError = false;
+  public errorMessage = '';
 
   public signupForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -37,7 +38,14 @@ export class SignupComponent {
           this.router.navigate([''])
         });
       },
-      error => this.onError = true
+      error => {
+        this.onError = true;
+        if (error.status === 409) {
+          this.errorMessage = 'Email déjà utilisé';
+        } else {
+          this.errorMessage = 'Une erreur est survenue. Veuillez réessayer.';
+        }
+      }
     );
   }
 

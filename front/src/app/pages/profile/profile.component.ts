@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   public profileForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
-    name: ['', [Validators.required, Validators.minLength(3)]], // fixed typo
+    name: ['', [Validators.required, Validators.minLength(3)]],
   });
 
   public userThemesForProfile: Theme[] = [];
@@ -78,8 +78,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     if (user && user.id) {
       const updatedUser: User = {
         ...user,
-        name: this.profileForm.value.name!, // assert non-null
-        email: this.profileForm.value.email! // assert non-null
+        name: this.profileForm.value.name!, 
+        email: this.profileForm.value.email!
       };
 
       this.profileService.updateUser(user.id, updatedUser)
@@ -87,7 +87,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         .subscribe(
           updatedUser => {
             console.log('User profile updated successfully', updatedUser);
-            this.sessionService.setUser(updatedUser); // Update user in session
+            this.sessionService.setUser(updatedUser);
           },
           error => {
             console.error('Error updating user profile', error);

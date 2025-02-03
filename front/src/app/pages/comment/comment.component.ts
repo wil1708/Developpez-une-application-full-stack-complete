@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Article } from 'src/app/core/models/article.interface'; // Adjust the import path as needed
 import { CommentService } from 'src/app/core/services/comment.service'; // Adjust the import path as needed
 import { Comment } from 'src/app/core/models/comment.interface'; // Adjust the import path as needed
+import { SessionService } from 'src/app/core/services/session.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -15,12 +16,13 @@ import { takeUntil } from 'rxjs/operators';
 export class CommentComponent implements OnInit, OnDestroy {
   article: Article | undefined;
   comments: Comment[] = [];
-  commentForm: FormGroup; // Form group to handle comment input
+  commentForm: FormGroup; 
   private destroy$ = new Subject<void>();
 
   constructor(
     private router: Router,
     private commentService: CommentService,
+    private sessionService: SessionService, 
     private fb: FormBuilder
   ) {
     const navigation = this.router.getCurrentNavigation();
@@ -52,12 +54,17 @@ export class CommentComponent implements OnInit, OnDestroy {
 
   public addComment() {
     if (this.article && this.commentForm.value.comment) {
-      const userId = 1; // Replace with the actual user ID
-      this.commentService.addComment(this.article.id, userId, this.commentForm.value.comment)
-        .subscribe((newComment: Comment) => {
-          this.comments.push(newComment);
-          this.commentForm.reset(); // Clear the form
-        });
+      const user = this.sessionService.user;
+      if (user && user.id) {
+        const userId = user.id;
+        this.commentService.addComment(this.article.id, userId, this.commentForm.value.comment)
+          .subscribe((newComment: Comment) => {
+            this.comments.push(newComment);
+            this.commentForm.reset();
+          });
+      } else {
+        console.error('User not logged in');
+      }
     }
   }
 }

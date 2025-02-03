@@ -58,8 +58,8 @@ export class CreateArticleComponent implements OnInit {
             this.isArticleCreated = true;
             setTimeout(() => {
               this.isArticleCreated = false;
-              this.router.navigate(['/articles']);
-            }, 2000);
+              this.router.navigate(['/comment'], {state: { article } });
+            }, 1000);
           },
           error: (error) => {
             console.error('Error creating article:', error);
