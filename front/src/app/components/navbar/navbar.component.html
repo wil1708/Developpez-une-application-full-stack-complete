@@ -1,10 +1,13 @@
 <header>
     <img src="/assets/logo_p6.png" alt="logo" />
-    <div class="navbar">
+    <div class="navbar" [ngClass]="{'open': isNavbarOpen}">
         <a class="textlink" [ngClass]="{'active': isArticlePage}" routerLink="/article">Articles</a>
         <a class="textlink" [ngClass]="{'active': isThemePage}" routerLink="/theme">Thèmes</a>
         <a class="iconlink" [ngClass]="{'active': isProfilePage}" routerLink="/profile">
             <mat-icon>account_circle</mat-icon>
         </a>
     </div>
+    <button mat-icon-button class="hamburger" (click)="toggleNavbar()">
+        <mat-icon>menu</mat-icon>
+    </button>
 </header>

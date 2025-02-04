@@ -11,6 +11,10 @@
     transform: scale(3);
 }
 
+.large-icon {
+    transform: scale(2);
+}
+
 .mat-card {
     border: none;
     box-shadow: none;
@@ -114,4 +118,154 @@
     cursor: pointer;
     color: #7763c4;
     transform: scale(2) rotate(-45deg);
+}
+
+@media screen and (max-width:970px) {
+
+    // .global-comment-div {
+    //     width: 100%;
+    //     overflow-x: hidden;
+    // }
+
+    .arrow-article {
+        flex-direction: column;
+    }
+
+    .mat-icon-button {
+        margin: 40px 0 0 10px;
+    }
+
+    .mat-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
+    }
+
+    .large-icon {
+        position: relative;
+    }
+
+    .mat-card-title {
+        position: absolute;
+        left: 90px;
+        top: -30px;
+    }
+
+    .mat-card-header-text {
+        margin: 0;
+    }
+    
+    .mat-card-header {
+        display: flex;
+        flex-direction: column;
+
+        .date-author {
+            display: flex;
+            justify-content: flex-start;
+            width: 100%;
+            margin-bottom: 40px;
+    
+            .date,
+            .author {
+                font-size: 14px;
+                color: #757575;
+                margin-right: 40px;
+            }
+        }
+        .date {
+            position: absolute;
+            left: 15px;
+            top: 20px;
+        }
+        .author {
+            position: absolute;
+            left: 130px;
+            top: 20px;
+        }
+        .theme {
+            position: absolute;
+            left: 15px;
+            top: 55px;
+        }
+    }
+    h2 {
+        text-align: left;
+        width: 100%;
+    }
+    .article-description {
+        margin-top: 37px !important;
+    }
+    .divider {
+        width: 100%;
+        height: 0.1px;
+        margin: 25px 0;
+    }
+    .comments {
+        .comment {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            span {
+                order: 1; 
+                width: auto;
+                margin: 10px 0 0 0;
+                align-self: flex-end;
+            }
+
+            .comment-text {
+                order: 0; 
+            }
+        }
+    }
+    
+    .comment-to-add {
+        display: flex;
+        position: relative;  // Ensure position is relative
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    .send-icon {
+        position: absolute;
+        right: 30px;  // Set the distance from the right edge
+        top: 15%;  // Adjust top value as needed to align vertically
+        transform: translateY(-50%);
+        transform: scale(2) rotate(-45deg);
+    }
+}
+
+@media screen and (max-width: 790px) {
+
+
+    .comment-to-add {
+        display: flex;
+        position: absolute;
+        left:0;
+        right:0;
+        bottom:-240px;
+        width: 100%;
+        padding: 0;
+        margin:0;
+        overflow: hidden;
+    }
+    // .comment-to-add {
+    //     display: flex;
+    //     position: relative;  // Ensure position is relative
+    //     width: 100%;
+    //     padding: 0;
+    //     margin: 0;
+    // }
+
+    .send-icon {
+        position: absolute;
+        right: 30px;
+        top: 15%;
+        transform: translateY(-50%);
+        transform: scale(2) rotate(-45deg);
+    }
+    
 }

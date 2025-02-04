@@ -58,19 +58,24 @@ public class AuthController {
      * @return un statut réponse 201
      */
     @PostMapping("api/auth/register")
-    public ResponseEntity<String> register(@RequestBody User user) {
+    public ResponseEntity<Map<String, String>> register(@RequestBody User user) {
         try {
             ArrayList<User> users = userService.findAllUsers();
             for (User u : users) {
                 if (u.getEmail().equals(user.getEmail())) {
-                    return ResponseEntity.status(HttpStatus.CONFLICT).body("Email already in use");
+                    return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("error", "Email already in use"));
                 }
             }
             userService.save(user);
-            return ResponseEntity.status(HttpStatus.CREATED).body("User created successfully");
+
+            // Return JSON response
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "User created successfully");
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error creating user");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("error", "Error creating user"));
         }
     }
+
 
 }

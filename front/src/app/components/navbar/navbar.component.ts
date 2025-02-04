@@ -12,6 +12,7 @@ export class NavbarComponent implements OnInit {
   isThemePage: boolean = false;
   isProfilePage: boolean = false;
   isArticlePage: boolean = false;
+  isNavbarOpen: boolean = false;
 
   constructor(private router: Router) { }
 
@@ -29,5 +30,9 @@ export class NavbarComponent implements OnInit {
     this.isThemePage = url.includes('theme');
     this.isProfilePage = url.includes('profile');
     this.isArticlePage = url.includes('article');
+  }
+
+  toggleNavbar(): void {
+    this.isNavbarOpen = !this.isNavbarOpen;
   }
 }
