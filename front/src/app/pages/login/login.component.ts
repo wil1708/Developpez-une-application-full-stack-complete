@@ -7,7 +7,6 @@ import { User } from 'src/app/core/models/user.interface';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { SessionService } from 'src/app/core/services/session.service';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,6 +16,7 @@ export class LoginComponent {
 
   public hide = true;
   public onError = false;
+  public errorMessage = ''; // Add an errorMessage property
 
   public signinForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -35,17 +35,22 @@ export class LoginComponent {
         localStorage.setItem('token', response.token);
         this.authService.me().subscribe((user: User) => {
           this.sessionService.logIn(user);
-          this.router.navigate(['theme'])
+          this.router.navigate(['theme']);
         });
-        this.router.navigate(['theme'])
+        this.router.navigate(['theme']);
       },
-      error => this.onError = true
+      error => {
+        this.onError = true;
+        if (error.status === 401) {
+          this.errorMessage = 'Identifiants de connexion invalides';
+        } else {
+          this.errorMessage = 'Une erreur est survenue. Veuillez réessayer.';
+        }
+      }
     );
   }
 
   public back() {
     window.history.back();
   }
-
-
 }

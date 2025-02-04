@@ -32,3 +32,15 @@
     justify-content: center; 
     width: 100%;  
 }
+
+@media screen and (max-width: 700px) {
+    .theme-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .mat-card {
+        width: 90%; 
+        margin: 10px 0; 
+    }
+}

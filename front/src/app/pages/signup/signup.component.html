@@ -6,29 +6,28 @@
 </button>
 <div>
   <mat-card>
-    <mat-card-header >
+    <mat-card-header>
       <mat-card-title>Inscription</mat-card-title>
     </mat-card-header>
     <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
       <mat-card-content>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline" floatLabel="always">
           <mat-label>Nom d'utilisateur</mat-label>
           <input matInput formControlName="name">
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline" floatLabel="always">
           <mat-label>Adresse email</mat-label>
           <input matInput formControlName="email" type="email">
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline" floatLabel="always">
           <mat-label>Mot de passe</mat-label>
           <input matInput formControlName="password" type="password">
         </mat-form-field>
       </mat-card-content>
+      <div *ngIf="onError" class="error-message">{{ errorMessage }}</div> <!-- Add this line to display the error message -->
       <button mat-raised-button color="primary" type="submit">S'inscrire</button>
     </form>
   </mat-card>
-
-
 </div>

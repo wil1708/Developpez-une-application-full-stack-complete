@@ -45,3 +45,13 @@ textarea[matInput] {
     width: 100%;
     text-align: center;
 }
+
+@media screen and (max-width: 430px) {
+    mat-card {
+        width: 80%;
+    }
+
+    ::ng-deep .mat-form-field-infix {
+        width: 100% !important;
+    }
+}

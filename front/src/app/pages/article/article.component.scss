@@ -24,7 +24,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 .mat-card-header {
@@ -40,8 +40,9 @@
         justify-content: space-between;
         width: 100%;
         margin-bottom: 10px;
-        
-        .date, .author {
+
+        .date,
+        .author {
             font-size: 14px;
             color: #757575;
         }
@@ -63,4 +64,27 @@
     background-color: transparent;
     border: none;
     box-shadow: none;
+}
+
+@media screen and (max-width: 700px) {
+    .article-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .mat-card {
+        width: auto;
+        margin: 10px auto;
+    }
+
+    .create-sort-div {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    button {
+        width: 50%;
+    }
 }
