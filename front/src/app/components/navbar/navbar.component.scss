@@ -1,45 +1,87 @@
 header {
-    border-bottom: 1px solid black;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  
-    .navbar {
+  border-bottom: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
+  .navbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-  
-      .textlink, .iconlink {
-        margin-right: 50px;
-        text-decoration: none;
-        font-size: 30px;
-  
-        &.active {
-          color: #7763c4 !important;
-        }
 
-        &.active .mat-icon {
-            color:#7763c4 !important;
-        }
-        
-        &:visited {
-          color: black;
-        }
-      }
-  
-      .iconlink {
-        margin-left: 20px;
-  
-        .mat-icon {
-          transform: scale(3);
+      .textlink, .iconlink {
           margin-right: 50px;
-          color: #b2b2b2;
-        }
+          text-decoration: none;
+          font-size: 30px;
+
+          &.active {
+              color: #7763c4 !important;
+          }
+
+          &.active .mat-icon {
+              color: #7763c4 !important;
+          }
+
+          &:visited {
+              color: black;
+          }
       }
-    }
-  
-    img {
-      width: 20%;
-    }
+
+      .iconlink {
+          margin-left: 20px;
+
+          .mat-icon {
+              transform: scale(3);
+              margin-right: 50px;
+              color: #b2b2b2;
+          }
+      }
   }
-  
+
+  .hamburger {
+      display: none;
+      mat-icon {
+          font-size: 40px;
+      }
+  }
+
+  img {
+      width: 20%;
+  }
+
+  @media screen and (max-width: 570px) {
+      .navbar {
+          display: none;
+          flex-direction: column;
+          position: fixed;
+          top: 0;
+          right: 0;
+          height: 100vh;
+          background-color: white;
+          border: 1px solid black;
+          z-index: 1000;
+          width: 50%; 
+          align-items: flex-end; 
+          justify-content: flex-start;
+
+          &.open {
+              display: flex; 
+          }
+
+          .textlink {
+              margin: 10px 20px;
+          }
+
+          .iconlink {
+           position: absolute;
+           bottom: 30px;
+           right: -60px;
+          }
+      }
+
+      .hamburger {
+          display: block;
+      }
+  }
+}
