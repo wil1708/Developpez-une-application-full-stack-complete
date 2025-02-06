@@ -26,12 +26,14 @@ export class NavbarComponent implements OnInit {
       });
   }
 
+  // Méthode permettant d'activer une couleur sur le lien de la navbar lorsque la page correspondante est active
   private updateActiveLink(url: string): void {
     this.isThemePage = url.includes('theme');
     this.isProfilePage = url.includes('profile');
     this.isArticlePage = url.includes('article');
   }
 
+  // Méthode pour ouvrir/fermer la navbar lors de l'utilisation du bouton type hamburger en mode mobile
   toggleNavbar(): void {
     this.isNavbarOpen = !this.isNavbarOpen;
   }

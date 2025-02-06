@@ -31,18 +31,35 @@ public class ThemeController {
         return new ResponseEntity<>(themeDtos, HttpStatus.OK);
     }
 
+    /**
+     * Méthode d'abonnement d'un user à un thème
+     * @param themeId
+     * @param userId
+     * @return un statut réponse 200
+     */
     @PostMapping("/api/theme/{themeId}/user/{userId}")
     public ResponseEntity<Void> subscribeToTheme(@PathVariable Long themeId, @PathVariable Long userId) {
         themeService.addUserToTheme(themeId, userId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    /**
+     * Méthode de désabonnement d'un user à un thème
+     * @param themeId
+     * @param userId
+     * @return un statut réponse 200
+     */
     @DeleteMapping("/api/theme/{themeId}/user/{userId}")
     public ResponseEntity<Void> unsubscribeFromTheme(@PathVariable Long themeId, @PathVariable Long userId) {
         themeService.removeUserFromTheme(themeId, userId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    /**
+     * Méthode de récupération des thèmes auxquels un user est abonné
+     * @param userId
+     * @return un statut réponse 200
+     */
     @GetMapping("/api/user/{userId}/themes")
     public ResponseEntity<List<ThemeDto>> getUserThemes(@PathVariable Long userId) {
         List<Theme> userThemes = themeService.findThemesByUserId(userId);

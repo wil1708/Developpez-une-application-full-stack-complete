@@ -68,7 +68,6 @@ public class AuthController {
             }
             userService.save(user);
 
-            // Return JSON response
             Map<String, String> response = new HashMap<>();
             response.put("message", "User created successfully");
             return ResponseEntity.status(HttpStatus.CREATED).body(response);

@@ -29,6 +29,13 @@ public class ArticleController {
     @Autowired
     private UserService userService;
 
+    /**
+     * Méthode de création d'un article
+     * @param themeId
+     * @param userId
+     * @param articleDto
+     * @return un statut réponse 201
+     */
     @PostMapping("/api/articles/theme/{themeId}/user/{userId}")
     public ResponseEntity<ArticleDto> createArticle(@PathVariable Long themeId, @PathVariable Long userId, @RequestBody ArticleDto articleDto) {
         Theme theme = themeService.findThemeById(themeId);
@@ -47,6 +54,11 @@ public class ArticleController {
         return new ResponseEntity<>(savedArticleDto, HttpStatus.CREATED);
     }
 
+    /**
+     * Méthode de récupération des articles correspondant aux thèmes auxquels est abonné un user
+     * @param userId
+     * @return un statut réponse 200
+     */
     @GetMapping("/api/user/{userId}/articles")
     public ResponseEntity<List<ArticleDto>> getUserArticles(@PathVariable Long userId) {
         List<Theme> userThemes = themeService.findThemesByUserId(userId);

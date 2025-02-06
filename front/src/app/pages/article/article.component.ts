@@ -13,8 +13,11 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class ArticleComponent implements OnInit, OnDestroy {
 
+  // Liste des articles
   articles: Article[] = [];
+  // Subject de gestion de la désinscription des abonnements 
   private destroy$ = new Subject<void>();
+  // Variable pour déterminer l'ordre de tri
   sortAscending: boolean = true;
 
   constructor(private router: Router, private articleService: ArticleService, private sessionService: SessionService) { }
@@ -34,6 +37,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
+  // Méthode de récupération de la liste des articles du user connecté
   loadArticles(): void {
     const user = this.sessionService.user;
     if (user && user.id) {
@@ -43,11 +47,13 @@ export class ArticleComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Méthode de tri des articles de type toggle
   toggleSortOrder(): void {
     this.sortAscending = !this.sortAscending;
     this.articles = this.sortArticles(this.articles);
   }
 
+  // Méthode de tri des articles par date ascendante ou descendante
   sortArticles(articles: Article[]): Article[] {
     return articles.sort((a, b) => this.sortAscending ? 
       new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime() :
@@ -55,6 +61,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
     );
   }
 
+  // Méthode de navigation vers la page comment pour afficher un article et ses commentaires
   viewArticle(article: Article): void {
     this.router.navigate(['/comment'], { state: { article } });
   }

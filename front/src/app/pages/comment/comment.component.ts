@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Article } from 'src/app/core/models/article.interface'; // Adjust the import path as needed
-import { CommentService } from 'src/app/core/services/comment.service'; // Adjust the import path as needed
-import { Comment } from 'src/app/core/models/comment.interface'; // Adjust the import path as needed
+import { Article } from 'src/app/core/models/article.interface'; // Ajustez le chemin d'import si nécessaire
+import { CommentService } from 'src/app/core/services/comment.service'; // Ajustez le chemin d'import si nécessaire
+import { Comment } from 'src/app/core/models/comment.interface'; // Ajustez le chemin d'import si nécessaire
 import { SessionService } from 'src/app/core/services/session.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -14,9 +14,13 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./comment.component.scss']
 })
 export class CommentComponent implements OnInit, OnDestroy {
+  // Article sélectionné
   article: Article | undefined;
+  // Liste des commentaires
   comments: Comment[] = [];
+  // Formulaire de commentaire
   commentForm: FormGroup; 
+  // Subject de gestion de la désinscription des abonnements 
   private destroy$ = new Subject<void>();
 
   constructor(
@@ -48,10 +52,12 @@ export class CommentComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
+  // Méthode de navigation vers la page précédente
   public back() {
     window.history.back();
   }
 
+  // Méthode d'ajout d'un commentaire
   public addComment() {
     if (this.article && this.commentForm.value.comment) {
       const user = this.sessionService.user;
