@@ -13,8 +13,11 @@ import { SessionService } from 'src/app/core/services/session.service';
   styleUrls: ['./create-article.component.scss']
 })
 export class CreateArticleComponent implements OnInit {
+  // Formulaire de création d'article
   public form: FormGroup;
+  // Liste des thèmes disponibles
   public themes: Theme[] = [];
+  // Indicateur de création d'article réussie
   public isArticleCreated = false;
 
   constructor(
@@ -40,10 +43,12 @@ export class CreateArticleComponent implements OnInit {
     this.themeService.getThemes();
   }
 
+  // Méthode de navigation vers la page précédente
   public back() {
     window.history.back();
   }
 
+  // Méthode de soumission du formulaire pour créer un article
   onSubmit() {
     if (this.form.valid) {
       const articleData = this.form.value;
@@ -54,11 +59,10 @@ export class CreateArticleComponent implements OnInit {
         const userId = user.id;
         this.articleService.createArticle(articleData, themeId, userId).subscribe({
           next: (article) => {
-            console.log('Article created successfully:', article);
             this.isArticleCreated = true;
             setTimeout(() => {
               this.isArticleCreated = false;
-              this.router.navigate(['/comment'], {state: { article } });
+              this.router.navigate(['/comment'], { state: { article } });
             }, 1000);
           },
           error: (error) => {

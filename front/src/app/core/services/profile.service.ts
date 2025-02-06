@@ -12,6 +12,7 @@ export class ProfileService {
 
   constructor(private httpClient: HttpClient) { }
 
+  // Méthode de requête API pour mettre à jour les informations d'un user
   public updateUser(userId: number, user: User): Observable<User> {
     return this.httpClient.patch<User>(`${this.pathService}/user/${userId}`, user);
   }

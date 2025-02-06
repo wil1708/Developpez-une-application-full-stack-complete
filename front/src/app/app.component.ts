@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from './core/services/auth.service';
 import { User } from './core/models/user.interface';
 import { SessionService } from './core/services/session.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -20,15 +21,18 @@ export class AppComponent implements OnInit {
     this.autoLog();
   }
 
+  // Méthode pour obtenir un observable indiquant si l'utilisateur est connecté
   public $isLogged(): Observable<boolean> {
     return this.sessionService.$isLogged();
   }
 
+  // Méthode de déconnexion
   public logout(): void {
     this.sessionService.logOut();
     this.router.navigate(['']);
   }
 
+  // Méthode pour connecter automatiquement l'utilisateur si un token est présent
   public autoLog(): void {
     this.authService.me().subscribe(
       (user: User) => {

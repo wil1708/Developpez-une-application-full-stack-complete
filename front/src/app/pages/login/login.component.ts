@@ -13,21 +13,27 @@ import { SessionService } from 'src/app/core/services/session.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-
+  // Indicateur pour masquer ou afficher le mot de passe
   public hide = true;
+  // Indicateur d'erreur de connexion
   public onError = false;
-  public errorMessage = ''; // Add an errorMessage property
+  // Message d'erreur à afficher
+  public errorMessage = '';
 
+  // Formulaire de connexion
   public signinForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.min(3)]]
+    password: ['', [Validators.required, Validators.min(8),Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*])[A-Za-z\\d!@#$%^&*]{8,}$') ]]
   });
 
-  constructor(private authService: AuthService, 
+  constructor(
+    private authService: AuthService, 
     private fb: FormBuilder, 
     private router: Router,
-    private sessionService: SessionService) { }
+    private sessionService: SessionService
+  ) { }
 
+  // Méthode de soumission du formulaire de connexion
   public onSubmit(): void {
     const loginRequest = this.signinForm.value as LoginRequest;
     this.authService.login(loginRequest).subscribe(
@@ -50,6 +56,7 @@ export class LoginComponent {
     );
   }
 
+  // Méthode de navigation vers la page précédente
   public back() {
     window.history.back();
   }
