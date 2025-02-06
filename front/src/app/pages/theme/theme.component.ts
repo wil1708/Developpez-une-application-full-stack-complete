@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
 import { Theme } from 'src/app/core/models/theme.interface';
 import { ThemeService } from 'src/app/core/services/theme.service';
 import { SessionService } from 'src/app/core/services/session.service';
@@ -13,11 +12,15 @@ import { takeUntil } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None
 })
 export class ThemeComponent implements OnInit, OnDestroy {
-
+  // Liste des thèmes
   themes: Theme[] = [];
+  // Subject de gestion de la désinscription des abonnements
   private destroy$ = new Subject<void>();
 
-  constructor(private router: Router, private themeService: ThemeService, private sessionService: SessionService) { }
+  constructor(
+    private themeService: ThemeService, 
+    private sessionService: SessionService
+  ) { }
 
   ngOnInit(): void {
     this.loadThemes();
@@ -47,10 +50,12 @@ export class ThemeComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
+  // Méthode de chargement des thèmes
   loadThemes(): void {
     this.themeService.getThemes();
   }
 
+  // Méthode d'abonnement à un thème
   subscribeToTheme(themeId: number): void {
     const user = this.sessionService.user;
     if (user && user.id) {
@@ -61,8 +66,7 @@ export class ThemeComponent implements OnInit, OnDestroy {
           }
           return theme;
         });
-        console.log('User subscribed to theme successfully.');
-        this.loadThemes(); // Recharger les thèmes après abonnement
+        this.loadThemes();
       }, error => {
         console.error('Error subscribing to theme', error);
       });

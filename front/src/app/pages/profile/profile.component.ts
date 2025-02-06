@@ -15,15 +15,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit, OnDestroy {
-  
-
-
+  // Formulaire de profil
   public profileForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     name: ['', [Validators.required, Validators.minLength(3)]],
   });
 
+  // Liste des thèmes de l'utilisateur
   public userThemesForProfile: Theme[] = [];
+  // Subject de gestion de la désinscription des abonnements
   private destroy$ = new Subject<void>();
 
   constructor(
@@ -35,7 +35,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    
     const user = this.sessionService.user;
     if (user && user.id) {
       this.themeService.getUserThemes(user.id);
@@ -57,6 +56,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
+  // Méthode de désinscription d'un thème
   unsubscribeFromTheme(themeId: number): void {
     const user = this.sessionService.user;
     if (user && user.id) {
@@ -64,7 +64,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
         .pipe(takeUntil(this.destroy$))
         .subscribe(() => {
           this.userThemesForProfile = this.userThemesForProfile.filter(theme => theme.id !== themeId);
-          console.log('User unsubscribed from theme successfully.');
         }, error => {
           console.error('Error unsubscribing from theme', error);
         });
@@ -73,6 +72,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Méthode de sauvegarde des modifications du profil
   saveProfile(): void {
     const user = this.sessionService.user;
     if (user && user.id) {
@@ -86,7 +86,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
         .pipe(takeUntil(this.destroy$))
         .subscribe(
           updatedUser => {
-            console.log('User profile updated successfully', updatedUser);
             this.sessionService.setUser(updatedUser);
           },
           error => {
@@ -98,8 +97,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Méthode de déconnexion
   public logout(): void {
     this.sessionService.logOut();
-    this.router.navigate([''])
+    this.router.navigate(['']);
   }
 }
